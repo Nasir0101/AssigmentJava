@@ -1,6 +1,7 @@
 package net.codejava.hibernate.DbModels;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "orders")
@@ -19,13 +20,13 @@ public class Orders {
     private Integer amount;
 
     @Column(name = "order_date")
-    private java.sql.Date orderDate;
+    private Date orderDate;
 
     @Column(name = "requested_shipping_date")
-    private java.sql.Date requestedShippingDate;
+    private Date requestedShippingDate;
 
     @Column(name = "shipping_date")
-    private java.sql.Date shippingDate;
+    private Date shippingDate;
 
     public Integer getOrderId() {
         return this.orderId;
