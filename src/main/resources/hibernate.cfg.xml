@@ -19,7 +19,6 @@
     <mapping class="net.codejava.hibernate.DbModels.Warehouse" />
     <mapping class="net.codejava.hibernate.DbModels.Orders" />
     <mapping class="net.codejava.hibernate.DbModels.Products" />
-    <mapping class="net.codejava.hibernate.Book" />
     
   </session-factory>
 </hibernate-configuration>
