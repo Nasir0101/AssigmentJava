@@ -11,6 +11,7 @@
     <property name="connection.password">05i15eba</property>
     <property name="show_sql">true</property>
        
+    <mapping class="net.codejava.hibernate.DbModels.Employees" />
     <mapping class="net.codejava.hibernate.Book" />
     
   </session-factory>

@@ -65,15 +65,17 @@ public class HibernateManager {
         criteria.from(Employees.class);
         List<Employees> entityList = session.createQuery(criteria).getResultList();
         for (Employees e : entityList) {
-            System.out.println("Title: " + e.getFirstName());
-            System.out.println("Author: " + e.getLastName());
-            System.out.println("Price: " + e.getEmail());
+            System.out.print("  Title: " + e.getFirstName());
+            System.out.print("  Author: " + e.getLastName());
+            System.out.print("  Price: " + e.getEmail());
+            System.out.println();
         }
         session.close();
     }
 
     protected void createEmployee() {
         Employees employees = new Employees();
+        employees.setEmployeeId(10);
         employees.setFirstName("asdas");
         employees.setLastName("afadfs");
         Session session = sessionFactory.openSession();
@@ -174,9 +176,9 @@ public class HibernateManager {
     public static void main(String[] args) {
         HibernateManager manager = new HibernateManager();
         manager.setup();
-        manager.create();
+        //manager.create();
         //manager.read();
-       // manager.getEmployees();
+        manager.createEmployee();
 
         manager.exit();
     }
