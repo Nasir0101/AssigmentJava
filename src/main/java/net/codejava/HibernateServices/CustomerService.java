@@ -108,7 +108,7 @@ public class CustomerService {
             Integer count = map.get(i);
             map.put(i, count != null ? count + 1 : 1);
         }
-        System.out.println("Customer id  with most order is " + getMaxEntryInMapBasedOnKey(map));
+        System.out.println("Customer id  with most order is " + getMaxEntryInMapBasedOnKey(map).getKey());
         session.close();
 
 
