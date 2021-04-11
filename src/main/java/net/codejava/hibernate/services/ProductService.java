@@ -1,5 +1,7 @@
 package net.codejava.hibernate.services;
 
+import net.codejava.hibernate.DbModels.Customers;
+import net.codejava.hibernate.DbModels.Orders;
 import net.codejava.hibernate.DbModels.Products;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,8 +9,10 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import java.math.BigDecimal;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProductService {
     protected SessionFactory sessionFactory;
@@ -58,8 +62,6 @@ public class ProductService {
         session.close();
     }
 
-
-
     //for updating a product , user will provide id
     protected void updateProducts(int id) {
         Products products = new Products();
@@ -84,6 +86,30 @@ public class ProductService {
         session.beginTransaction();
         session.update(products);
         session.getTransaction().commit();
+        session.close();
+    }
+
+    //for deleting a customer , user will provide id
+    public void removeCustomer(int id, SessionFactory sessionFactory) {
+        Products product = new Products();
+        product.setProductId(id);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.delete(product);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    //Getting all customers from the database
+    public void getProducts(SessionFactory sessionFactory) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Products> criteria = builder.createQuery(Products.class);
+        criteria.from(Products.class);
+        List<Products> entityList = session.createQuery(criteria).getResultList();
+        for (Products e : entityList) {
+            System.out.print("  Product Name: " + e.getProductName()+ "  Product Id : " + e.getProductId() + "  Stock Amount : " + e.getStockAmount() + "  WarehouseId : : " + e.getWarehouseId() + " Product Price : " + e.getProductPrice());
+        }
         session.close();
     }
 

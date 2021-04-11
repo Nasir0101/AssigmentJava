@@ -129,8 +129,8 @@ public class OrdersService {
         List<Products> entityList = session.createQuery(criteria).getResultList();
         for (Products e : entityList) {
             if (e.getStockAmount() < 10) {
+                System.out.println("Product " + e.getProductDescription() + " is low in stock");
             }
-            System.out.println("Product " + e.getProductDescription() + " is low in stock");
         }
         session.close();
 

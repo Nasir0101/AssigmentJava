@@ -4,12 +4,10 @@ import net.codejava.hibernate.DbModels.Customers;
 import net.codejava.hibernate.DbModels.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CustomerService {
 
@@ -38,6 +36,61 @@ public class CustomerService {
         session.close();
     }
 
+    //Create a new Product, user provide all the fields
+    protected void createCustomer(SessionFactory sessionFactory) {
+        Customers customer = new Customers();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter customer id");
+        int id = scanner.nextInt();
+        customer.setCustomerId(id);
+        System.out.println("Enter customer  firstName");
+        String name = scanner.next();
+        customer.setFirstName(name);
+        System.out.println("Enter customer lastName");
+        String description = scanner.next();
+        customer.setLastName(description);
+        System.out.println("Enter customer email");
+        String email = scanner.next();
+        customer.setEmail(email);
+        System.out.println("Enter customer address");
+        String address = scanner.next();
+        customer.setAddress(address);
+        System.out.println("Enter organization Id");
+        Integer organization = scanner.nextInt();
+        customer.setOrganisationId(organization);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(customer);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    //for updating a product , user will provide id
+    protected void updateProducts(int id, SessionFactory sessionFactory) {
+        Customers customer = new Customers();
+        Scanner scanner = new Scanner(System.in);
+        customer.setCustomerId(id);
+        System.out.println("Enter customer  firstName");
+        String name = scanner.next();
+        customer.setFirstName(name);
+        System.out.println("Enter customer lastName");
+        String description = scanner.next();
+        customer.setLastName(description);
+        System.out.println("Enter customer email");
+        String email = scanner.next();
+        customer.setEmail(email);
+        System.out.println("Enter customer address");
+        String address = scanner.next();
+        customer.setAddress(address);
+        System.out.println("Enter organization Id");
+        Integer organization = scanner.nextInt();
+        customer.setOrganisationId(organization);
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(customer);
+        session.getTransaction().commit();
+        session.close();
+    }
 
     //To find customer with most orders
     public void customerWithMostOrders(SessionFactory sessionFactory) {
