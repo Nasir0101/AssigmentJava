@@ -12,7 +12,13 @@
     <property name="show_sql">true</property>
        
     <mapping class="net.codejava.hibernate.DbModels.Employees" />
-    <mapping class="net.codejava.hibernate.Book" />
+    <mapping class="net.codejava.hibernate.DbModels.Customers" />
+    <mapping class="net.codejava.hibernate.DbModels.Inventory" />
+    <mapping class="net.codejava.hibernate.DbModels.Offices" />
+    <mapping class="net.codejava.hibernate.DbModels.Reclaims" />
+    <mapping class="net.codejava.hibernate.DbModels.Warehouse" />
+    <mapping class="net.codejava.hibernate.DbModels.Orders" />
+    <mapping class="net.codejava.hibernate.DbModels.Products" />
     
   </session-factory>
 </hibernate-configuration>
