@@ -16,27 +16,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class OrdersService {
-    protected SessionFactory sessionFactory;
-
-    public void setup() {
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
-                .build();
-        try {
-            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        } catch (Exception ex) {
-            StandardServiceRegistryBuilder.destroy(registry);
-        }
-    }
-
-    public void exit() {
-        sessionFactory.close();
-    }
 
 
     //Getting all order list form the database
     public void getOrders(SessionFactory sessionFactory) {
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Orders> criteria = builder.createQuery(Orders.class);
         criteria.from(Orders.class);
@@ -73,7 +57,7 @@ public class OrdersService {
         System.out.println("Enter Employee officeId");
         Integer officeId = scanner.nextInt();
         orders.setProductId(officeId);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(orders);
         session.getTransaction().commit();
@@ -103,7 +87,7 @@ public class OrdersService {
         System.out.println("Enter Employee officeId");
         Integer officeId = scanner.nextInt();
         orders.setProductId(officeId);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(orders);
         session.getTransaction().commit();
@@ -114,7 +98,7 @@ public class OrdersService {
     public void removeOrder(int id, SessionFactory sessionFactory) {
         Orders order = new Orders();
         order.setOrderId(id);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(order);
         session.getTransaction().commit();
@@ -123,10 +107,10 @@ public class OrdersService {
 
     //ToCheck stock of the products  , stock low if products is less than 10
     public void lowStock(SessionFactory sessionFactory) {
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Products> criteria = builder.createQuery(Products.class);
-        criteria.from(Employees.class);
+        criteria.from(Products.class);
         List<Products> entityList = session.createQuery(criteria).getResultList();
         for (Products e : entityList) {
             if (e.getStockAmount() < 10) {

@@ -108,10 +108,39 @@ public class CustomerService {
             Integer count = map.get(i);
             map.put(i, count != null ? count + 1 : 1);
         }
+        System.out.println("Customer id  with most order is " + getMaxEntryInMapBasedOnKey(map));
         session.close();
 
 
     }
+    public static <K extends Comparable<K>, V> Map.Entry<K, V> getMaxEntryInMapBasedOnKey(Map<K, V> map)
+    {
+        // To store the result
+        Map.Entry<K, V> entryWithMaxKey = null;
+
+        // Iterate in the map to find the required entry
+        for (Map.Entry<K, V> currentEntry : map.entrySet()) {
+
+            if (
+
+                // If this is the first entry,
+                // set the result as this
+                    entryWithMaxKey == null
+
+                            // If this entry's key is more than the max key
+                            // Set this entry as the max
+                            || currentEntry.getKey()
+                            .compareTo(entryWithMaxKey.getKey())
+                            > 0) {
+
+                entryWithMaxKey = currentEntry;
+            }
+        }
+
+        // Return the entry with highest key
+        return entryWithMaxKey;
+    }
+
 
 
 }

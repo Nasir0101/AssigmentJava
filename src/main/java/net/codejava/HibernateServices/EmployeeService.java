@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public class EmployeeService {
 
-    protected SessionFactory sessionFactory;
 
     //Create a new employeee, user provide all the fields
     public void createEmployee(SessionFactory sessionFactory) {
@@ -41,7 +40,7 @@ public class EmployeeService {
         System.out.println("Enter Employee officeId");
         String officeId = scanner.next();
         employees.setEmployeeComment(officeId);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(employees);
         session.getTransaction().commit();
@@ -50,7 +49,7 @@ public class EmployeeService {
 
     //Getting all the employees from the database
     public void getEmployees(SessionFactory sessionFactory) {
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Employees> criteria = builder.createQuery(Employees.class);
         criteria.from(Employees.class);
@@ -83,7 +82,7 @@ public class EmployeeService {
         System.out.println("Enter Employee officeId");
         String officeId = scanner.next();
         employees.setEmployeeComment(officeId);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(employees);
         session.getTransaction().commit();
@@ -94,26 +93,11 @@ public class EmployeeService {
     public void removeEmployee(int id, SessionFactory sessionFactory) {
         Employees employee = new Employees();
         employee.setEmployeeId(id);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(employee);
         session.getTransaction().commit();
         session.close();
-    }
-
-    public void setup() {
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
-                .build();
-        try {
-            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        } catch (Exception ex) {
-            StandardServiceRegistryBuilder.destroy(registry);
-        }
-    }
-
-    public void exit() {
-        sessionFactory.close();
     }
 
 }

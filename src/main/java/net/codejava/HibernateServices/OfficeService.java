@@ -14,26 +14,10 @@ import java.util.Scanner;
 
 public class OfficeService {
 
-    protected SessionFactory sessionFactory;
-
-    public void setup() {
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
-                .build();
-        try {
-            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        } catch (Exception ex) {
-            StandardServiceRegistryBuilder.destroy(registry);
-        }
-    }
-
-    public void exit() {
-        sessionFactory.close();
-    }
 
     //Getting all offices list from the database
     public void getOffices(SessionFactory sessionFactory) {
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Offices> criteria = builder.createQuery(Offices.class);
         criteria.from(Offices.class);
@@ -57,7 +41,7 @@ public class OfficeService {
         System.out.println("Enter office address");
         String address = scanner.next();
         offices.setAddress(address);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(offices);
         session.getTransaction().commit();
@@ -75,7 +59,7 @@ public class OfficeService {
         System.out.println("Enter office address");
         String address = scanner.next();
         offices.setAddress(address);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(offices);
         session.getTransaction().commit();
@@ -86,7 +70,7 @@ public class OfficeService {
     public void removeOffice(int id, SessionFactory sessionFactory) {
         Offices offices = new Offices();
         offices.setOfficeId(id);
-        Session session = this.sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.delete(offices);
         session.getTransaction().commit();
