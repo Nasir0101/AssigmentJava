@@ -17,7 +17,7 @@ public class EmployeeService {
     protected SessionFactory sessionFactory;
 
     //Create a new employeee, user provide all the fields
-    protected void createEmployee() {
+    public void createEmployee(SessionFactory sessionFactory) {
         Employees employees = new Employees();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Employee id");
@@ -41,7 +41,7 @@ public class EmployeeService {
         System.out.println("Enter Employee officeId");
         String officeId = scanner.next();
         employees.setEmployeeComment(officeId);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.save(employees);
         session.getTransaction().commit();
@@ -49,8 +49,8 @@ public class EmployeeService {
     }
 
     //Getting all the employees from the database
-    protected void getEmployees() {
-        Session session = sessionFactory.openSession();
+    public void getEmployees(SessionFactory sessionFactory) {
+        Session session = this.sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Employees> criteria = builder.createQuery(Employees.class);
         criteria.from(Employees.class);
@@ -62,7 +62,7 @@ public class EmployeeService {
     }
 
     //for updating a employee , user will provide id
-    protected void updateEmployee(int id) {
+    public void updateEmployee(int id, SessionFactory sessionFactory) {
         Employees employees = new Employees();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Employee name");
@@ -83,7 +83,7 @@ public class EmployeeService {
         System.out.println("Enter Employee officeId");
         String officeId = scanner.next();
         employees.setEmployeeComment(officeId);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.update(employees);
         session.getTransaction().commit();
@@ -91,17 +91,17 @@ public class EmployeeService {
     }
 
     //for deleting a employee , user will provide id
-    protected void removeEmployee(int id) {
+    public void removeEmployee(int id, SessionFactory sessionFactory) {
         Employees employee = new Employees();
         employee.setEmployeeId(id);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.delete(employee);
         session.getTransaction().commit();
         session.close();
     }
 
-    protected void setup() {
+    public void setup() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
@@ -112,7 +112,7 @@ public class EmployeeService {
         }
     }
 
-    protected void exit() {
+    public void exit() {
         sessionFactory.close();
     }
 

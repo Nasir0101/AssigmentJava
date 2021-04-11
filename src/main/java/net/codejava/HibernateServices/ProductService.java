@@ -32,7 +32,7 @@ public class ProductService {
 
 
     //Create a new Product, user provide all the fields
-    protected void createProducts() {
+    public void createProducts(SessionFactory sessionFactory) {
         Products products = new Products();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Products id");
@@ -53,7 +53,7 @@ public class ProductService {
         System.out.println("Enter Products warehouseId");
         String warehouseId = scanner.next();
         products.setWarehouseId(warehouseId);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.save(products);
         session.getTransaction().commit();
@@ -61,7 +61,7 @@ public class ProductService {
     }
 
     //for updating a product , user will provide id
-    protected void updateProducts(int id) {
+    public void updateProducts(int id, SessionFactory sessionFactory) {
         Products products = new Products();
         Scanner scanner = new Scanner(System.in);
         products.setProductId(id);
@@ -80,7 +80,7 @@ public class ProductService {
         System.out.println("Enter Products warehouseId");
         String officeId = scanner.next();
         products.setWarehouseId(officeId);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.update(products);
         session.getTransaction().commit();

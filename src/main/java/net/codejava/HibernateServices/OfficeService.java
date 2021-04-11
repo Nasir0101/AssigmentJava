@@ -16,7 +16,7 @@ public class OfficeService {
 
     protected SessionFactory sessionFactory;
 
-    protected void setup() {
+    public void setup() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
@@ -27,13 +27,13 @@ public class OfficeService {
         }
     }
 
-    protected void exit() {
+    public void exit() {
         sessionFactory.close();
     }
 
     //Getting all offices list from the database
-    protected void getOffices() {
-        Session session = sessionFactory.openSession();
+    public void getOffices(SessionFactory sessionFactory) {
+        Session session = this.sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Offices> criteria = builder.createQuery(Offices.class);
         criteria.from(Offices.class);
@@ -45,7 +45,7 @@ public class OfficeService {
     }
 
     //Create a new office, user provide all the fields
-    protected void craeteOffice() {
+    public void craeteOffice(SessionFactory sessionFactory) {
         Offices offices = new Offices();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter office id");
@@ -57,7 +57,7 @@ public class OfficeService {
         System.out.println("Enter office address");
         String address = scanner.next();
         offices.setAddress(address);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.save(offices);
         session.getTransaction().commit();
@@ -65,7 +65,7 @@ public class OfficeService {
     }
 
     //for updating a office , user will provide id
-    protected void updateOffices(int id){
+    public void updateOffices(int id, SessionFactory sessionFactory){
         Offices offices = new Offices();
         Scanner scanner = new Scanner(System.in);
         offices.setOfficeId(id);
@@ -75,7 +75,7 @@ public class OfficeService {
         System.out.println("Enter office address");
         String address = scanner.next();
         offices.setAddress(address);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.update(offices);
         session.getTransaction().commit();
@@ -83,10 +83,10 @@ public class OfficeService {
     }
 
     //for deleting a office , user will provide id
-    protected void removeOffice(int id) {
+    public void removeOffice(int id, SessionFactory sessionFactory) {
         Offices offices = new Offices();
         offices.setOfficeId(id);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.delete(offices);
         session.getTransaction().commit();

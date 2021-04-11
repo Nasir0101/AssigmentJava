@@ -37,7 +37,7 @@ public class CustomerService {
     }
 
     //Create a new Product, user provide all the fields
-    protected void createCustomer(SessionFactory sessionFactory) {
+    public void createCustomer(SessionFactory sessionFactory) {
         Customers customer = new Customers();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter customer id");
@@ -66,7 +66,7 @@ public class CustomerService {
     }
 
     //for updating a product , user will provide id
-    protected void updateProducts(int id, SessionFactory sessionFactory) {
+    public void updateCustomers(int id, SessionFactory sessionFactory) {
         Customers customer = new Customers();
         Scanner scanner = new Scanner(System.in);
         customer.setCustomerId(id);

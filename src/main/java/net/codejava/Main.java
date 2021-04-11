@@ -66,7 +66,7 @@ public class Main {
             System.out.println("press 7 for gets a list of the products that has a low stock (less than 10)");
             int entityOption = in.nextInt();
 
-            if(entityOption == 1){
+            if (entityOption == 1) {
                 System.out.println("Write Command for Opertion : list , add , update , remove ");
                 String operation = in.next();
 
@@ -88,8 +88,7 @@ public class Main {
                         jdbcCustomerService.removeCustomerFromJDBC(connection);
                         break;
                 }
-            }
-            else if(entityOption == 2){
+            } else if (entityOption == 2) {
 
                 System.out.println("Write Command for Opertion : list , add , update , remove ");
                 String operation = in.next();
@@ -113,8 +112,7 @@ public class Main {
                         break;
                 }
 
-            }
-            else if(entityOption == 3){
+            } else if (entityOption == 3) {
 
                 System.out.println("Write Command for Opertion : list , add , update , remove ");
                 String operation = in.next();
@@ -138,8 +136,7 @@ public class Main {
                         break;
                 }
 
-            }
-            else if(entityOption == 4){
+            } else if (entityOption == 4) {
 
                 System.out.println("Write Command for Opertion : list , add , update , remove ");
                 String operation = in.next();
@@ -163,8 +160,7 @@ public class Main {
                         break;
                 }
 
-            }
-            else if(entityOption == 5){
+            } else if (entityOption == 5) {
 
                 System.out.println("Write Command for Opertion : list , add , update , remove ");
                 String operation = in.next();
@@ -188,30 +184,163 @@ public class Main {
                         break;
                 }
 
-            }
-            else if(entityOption == 6){
+            } else if (entityOption == 6) {
                 assert connection != null;
                 jdbcCustomerService.getCustomerWhoOrderedMost(connection);
-            }
-
-            else if(entityOption == 7){
+            } else if (entityOption == 7) {
                 assert connection != null;
                 jdbcProductService.StockLessProduct(connection);
-            }
-
-            else {
+            } else {
                 System.out.println("Worng Input");
             }
 
 
-
         } else if (option == 2) {
 
-            // sikander code here
-//            SessionFactory sessionFactory;
-//            final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
-//            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-//            CustomerService customerService = new CustomerService();
+
+            SessionFactory sessionFactory;
+            final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+
+            System.out.println("Select Entity for Operation");
+
+            System.out.println("Press 1 for Customer");
+            System.out.println("press 2 for Employee");
+            System.out.println("press 3 for Office");
+            System.out.println("press 4 for Order");
+            System.out.println("press 5 for Product");
+            System.out.println("press 6 for gets the customer who ordered most");
+            System.out.println("press 7 for gets a list of the products that has a low stock (less than 10)");
+            int entityOption = in.nextInt();
+
+            if (entityOption == 1) {
+                System.out.println("Write Command for Opertion : list , add , update , remove ");
+                String operation = in.next();
+
+                switch (operation) {
+                    case "list":
+                        customerService.getCustomers(sessionFactory);
+                        break;
+                    case "add":
+                        customerService.createCustomer(sessionFactory);
+                        break;
+                    case "update":
+                        System.out.println("Enter id");
+                        Integer id = in.nextInt();
+                        customerService.updateCustomers(id, sessionFactory);
+                        break;
+                    case "remove":
+                        System.out.println("Enter id");
+                        Integer id1 = in.nextInt();
+                        customerService.removeCustomer(id1, sessionFactory);
+                        break;
+                }
+            } else if (entityOption == 2) {
+
+                System.out.println("Write Command for Opertion : list , add , update , remove ");
+                String operation = in.next();
+
+                switch (operation) {
+                    case "list":
+                        employeeService.getEmployees(sessionFactory);
+                        break;
+                    case "add":
+                        employeeService.createEmployee(sessionFactory);
+                        break;
+                    case "update":
+                        System.out.println("Enter id");
+                        Integer id = in.nextInt();
+                        employeeService.updateEmployee(id,sessionFactory);
+                        break;
+                    case "remove":
+                        System.out.println("Enter id");
+                        Integer id1 = in.nextInt();
+                        employeeService.removeEmployee(id1,sessionFactory);
+                        break;
+                }
+
+            } else if (entityOption == 3) {
+
+                System.out.println("Write Command for Opertion : list , add , update , remove ");
+                String operation = in.next();
+
+                switch (operation) {
+                    case "list":
+                        officeService.getOffices(sessionFactory);
+                        break;
+                    case "add":
+                        officeService.craeteOffice(sessionFactory);
+                        break;
+                    case "update":
+                        System.out.println("Enter id");
+                        Integer id = in.nextInt();
+                        officeService.updateOffices(id,sessionFactory);
+                        break;
+                    case "remove":
+                        System.out.println("Enter id");
+                        Integer id1 = in.nextInt();
+                        officeService.removeOffice(id1,sessionFactory);
+                        break;
+                }
+
+            } else if (entityOption == 4) {
+
+                System.out.println("Write Command for Opertion : list , add , update , remove ");
+                String operation = in.next();
+
+                switch (operation) {
+                    case "list":
+                        ordersService.getOrders(sessionFactory);
+                        break;
+                    case "add":
+                        ordersService.createOrder(sessionFactory);
+                        break;
+                    case "update":
+                        System.out.println("Enter id");
+                        Integer id = in.nextInt();
+                        ordersService.updateOrders(id,sessionFactory);
+                        break;
+                    case "remove":
+                        System.out.println("Enter id");
+                        Integer id1 = in.nextInt();
+                        ordersService.removeOrder(id1,sessionFactory);
+                        break;
+                }
+
+            } else if (entityOption == 5) {
+
+                System.out.println("Write Command for Opertion : list , add , update , remove ");
+                String operation = in.next();
+
+                switch (operation) {
+                    case "list":
+                        productService.getProducts(sessionFactory);
+                        break;
+                    case "add":
+                        productService.createProducts(sessionFactory);
+                        break;
+                    case "update":
+                        System.out.println("Enter id");
+                        Integer id = in.nextInt();
+                        productService.updateProducts(id,sessionFactory);
+                        break;
+                    case "remove":
+                        System.out.println("Enter id");
+                        Integer id1 = in.nextInt();
+                        productService.removeCustomer(id1, sessionFactory);
+                        break;
+                }
+
+            } else if (entityOption == 6) {
+
+                customerService.customerWithMostOrders(sessionFactory);
+
+            } else if (entityOption == 7) {
+                ordersService.lowStock(sessionFactory);
+            } else {
+                System.out.println("Worng Input");
+            }
+
 
         } else {
 

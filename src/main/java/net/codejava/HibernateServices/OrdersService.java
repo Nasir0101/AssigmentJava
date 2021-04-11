@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class OrdersService {
     protected SessionFactory sessionFactory;
 
-    protected void setup() {
+    public void setup() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
@@ -29,14 +29,14 @@ public class OrdersService {
         }
     }
 
-    protected void exit() {
+    public void exit() {
         sessionFactory.close();
     }
 
 
     //Getting all order list form the database
-    protected void getOrders() {
-        Session session = sessionFactory.openSession();
+    public void getOrders(SessionFactory sessionFactory) {
+        Session session = this.sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Orders> criteria = builder.createQuery(Orders.class);
         criteria.from(Orders.class);
@@ -49,7 +49,7 @@ public class OrdersService {
     }
 
     //Create a new order, user provide all the fields
-    protected void createOrder() {
+    public void createOrder(SessionFactory sessionFactory) {
         Orders orders = new Orders();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter OrderId");
@@ -73,7 +73,7 @@ public class OrdersService {
         System.out.println("Enter Employee officeId");
         Integer officeId = scanner.nextInt();
         orders.setProductId(officeId);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.save(orders);
         session.getTransaction().commit();
@@ -81,7 +81,7 @@ public class OrdersService {
     }
 
     //for updating a order , user will provide id
-    protected void updateOrders(int id) {
+    public void updateOrders(int id, SessionFactory sessionFactory) {
         Orders orders = new Orders();
         Scanner scanner = new Scanner(System.in);
         orders.setOrderId(id);
@@ -103,7 +103,7 @@ public class OrdersService {
         System.out.println("Enter Employee officeId");
         Integer officeId = scanner.nextInt();
         orders.setProductId(officeId);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.update(orders);
         session.getTransaction().commit();
@@ -111,10 +111,10 @@ public class OrdersService {
     }
 
     //for deleting a order , user will provide id
-    protected void removeOrder(int id) {
+    public void removeOrder(int id, SessionFactory sessionFactory) {
         Orders order = new Orders();
         order.setOrderId(id);
-        Session session = sessionFactory.openSession();
+        Session session = this.sessionFactory.openSession();
         session.beginTransaction();
         session.delete(order);
         session.getTransaction().commit();
@@ -122,8 +122,8 @@ public class OrdersService {
     }
 
     //ToCheck stock of the products  , stock low if products is less than 10
-    protected void lowStock() {
-        Session session = sessionFactory.openSession();
+    public void lowStock(SessionFactory sessionFactory) {
+        Session session = this.sessionFactory.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Products> criteria = builder.createQuery(Products.class);
         criteria.from(Employees.class);
