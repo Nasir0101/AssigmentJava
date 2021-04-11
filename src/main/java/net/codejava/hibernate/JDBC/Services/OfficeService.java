@@ -8,7 +8,7 @@ public class OfficeService {
 
 
     //Method for get Offices from db by jdbc
-    protected void getOfficeFromJDBC(Connection connection) throws SQLException {
+    public void getOfficeFromJDBC(Connection connection) throws SQLException {
         String sql = "SELECT * FROM offices;";
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
@@ -22,7 +22,7 @@ public class OfficeService {
     }
 
     // Method for add Office data in db by jdbc
-    protected void addOfficeInJDBC(Connection connection) throws IOException, SQLException {
+    public void addOfficeInJDBC(Connection connection) throws IOException, SQLException {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter Office ID : ");
@@ -42,7 +42,7 @@ public class OfficeService {
         }
     }
 
-    protected void removeOfficeFromJDBC(Connection connection) throws SQLException {
+    public void removeOfficeFromJDBC(Connection connection) throws SQLException {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Office Id For Delete");
         int office_id = in.nextInt();
@@ -56,7 +56,7 @@ public class OfficeService {
     }
 
     // Method for Updating Office data in by jdbc
-    protected void updateOfficeInJDBC(Connection connection) throws SQLException {
+    public void updateOfficeInJDBC(Connection connection) throws SQLException {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Office Id For Check office exist : ");
         int id = in.nextInt();

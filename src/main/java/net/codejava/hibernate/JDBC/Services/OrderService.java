@@ -8,7 +8,7 @@ public class OrderService {
 
 
     // Get Order from Db by JDBC
-    protected void getOrderFromJDBC(Connection connection) throws SQLException {
+    public void getOrderFromJDBC(Connection connection) throws SQLException {
         String sql = "SELECT * FROM orders;";
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
@@ -25,7 +25,7 @@ public class OrderService {
 
 
     //  remove order from db by jdbc
-    protected void removeOrderFromJDBC(Connection connection) throws SQLException {
+    public void removeOrderFromJDBC(Connection connection) throws SQLException {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Order Id For Delete");
         int order_id = in.nextInt();
@@ -39,7 +39,7 @@ public class OrderService {
     }
 
     // add order in db by jdbc
-    protected void addOrderInJDBC(Connection connection) throws IOException, SQLException {
+    public void addOrderInJDBC(Connection connection) throws IOException, SQLException {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter order_id : ");
@@ -73,7 +73,7 @@ public class OrderService {
     }
 
     // Method for Updating Order data in by jdbc
-    protected void updateOrderInJDBC(Connection connection) throws SQLException {
+    public void updateOrderInJDBC(Connection connection) throws SQLException {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Order Id For Check Order exist : ");
         int id = in.nextInt();

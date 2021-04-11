@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ProductService {
 
     //Method for getting product data by jdbc
-    protected void getProductFromJDBC(Connection connection) throws SQLException {
+    public void getProductFromJDBC(Connection connection) throws SQLException {
         String sql = "SELECT * FROM products;";
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
@@ -24,7 +24,7 @@ public class ProductService {
     }
 
     //Method for add product in db by jdbc
-    protected void addProductInJDBC(Connection connection) throws IOException, SQLException {
+    public void addProductInJDBC(Connection connection) throws IOException, SQLException {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter product_id : ");
@@ -56,7 +56,7 @@ public class ProductService {
     }
 
     // Remove product data from db by jdbc
-    protected void removeProductFromJDBC(Connection connection) throws SQLException {
+    public void removeProductFromJDBC(Connection connection) throws SQLException {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Product Id For Delete");
         int id = in.nextInt();
@@ -74,7 +74,7 @@ public class ProductService {
     }
 
     // Method for Updating Product data in by jdbc
-    protected void updateProductInJDBC(Connection connection) throws SQLException {
+    public void updateProductInJDBC(Connection connection) throws SQLException {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Product Id For Check Product exist : ");
         int id = in.nextInt();
@@ -110,7 +110,7 @@ public class ProductService {
     }
 
     //  Mehtod for getting product name who have less stock under 10
-    protected void StockLessProduct(Connection connection) throws SQLException {
+    public void StockLessProduct(Connection connection) throws SQLException {
         String sql = "SELECT * FROM uppgift_db_jdbc.products where stock_amount < 10;";
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);

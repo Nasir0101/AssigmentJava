@@ -8,7 +8,7 @@ public class EmployeeService {
 
 
     // Method for getting Employee by jdbc
-    protected void getEmployeesFromJDBC(Connection connection) throws SQLException {
+    public void getEmployeesFromJDBC(Connection connection) throws SQLException {
         String sql = "SELECT * FROM employees;";
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
@@ -25,7 +25,7 @@ public class EmployeeService {
     }
 
     // Method for add Employee by jdbc
-    protected void addEmployeeInJDBC(Connection connection) throws IOException, SQLException {
+    public void addEmployeeInJDBC(Connection connection) throws IOException, SQLException {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter Employee ID : ");
@@ -59,7 +59,7 @@ public class EmployeeService {
     }
 
     // Method for delete Employee in db by jdbc
-    protected void removeEmployeeFromJDBC(Connection connection) throws SQLException {
+    public void removeEmployeeFromJDBC(Connection connection) throws SQLException {
         Scanner in  = new Scanner(System.in);
         System.out.print("Enter Employee Id For Delete");
         int id = in.nextInt();
@@ -76,7 +76,7 @@ public class EmployeeService {
 
     }
     // Method for Updating Employee data in by jdbc
-    protected void updateEmployeeInJDBC(Connection connection) throws SQLException{
+    public void updateEmployeeInJDBC(Connection connection) throws SQLException{
         Scanner in = new Scanner(System.in);
         System.out.print("Enter Employee Id For Check Employee exist : ");
         int id = in.nextInt();
@@ -118,7 +118,7 @@ public class EmployeeService {
 
 
     // Method for getting customer id who ordered Most
-    protected void getCustomerWhoOrderedMost(Connection connection) throws SQLException {
+    public void getCustomerWhoOrderedMost(Connection connection) throws SQLException {
         String sql = "SELECT customer_id, count(customer_id) as count FROM uppgift_db_jdbc.orders group by customer_id order by count desc limit 1;";
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(sql);
