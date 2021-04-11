@@ -1,8 +1,6 @@
-package net.codejava.hibernate.services;
+package net.codejava.HibernateServices;
 
-import net.codejava.hibernate.DbModels.Customers;
-import net.codejava.hibernate.DbModels.Orders;
-import net.codejava.hibernate.DbModels.Products;
+import net.codejava.DbModels.Products;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

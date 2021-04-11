@@ -1,7 +1,7 @@
-package net.codejava.hibernate.services;
+package net.codejava.HibernateServices;
 
-import net.codejava.hibernate.DbModels.Customers;
-import net.codejava.hibernate.DbModels.Orders;
+import net.codejava.DbModels.Customers;
+import net.codejava.DbModels.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

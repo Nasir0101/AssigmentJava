@@ -1,4 +1,4 @@
-package net.codejava.hibernate.DbModels;
+package net.codejava.DbModels;
 
 import javax.persistence.*;
 

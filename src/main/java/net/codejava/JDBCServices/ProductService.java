@@ -1,4 +1,4 @@
-package net.codejava.hibernate.JDBC.Services;
+package net.codejava.JDBCServices;
 
 import java.io.IOException;
 import java.math.BigDecimal;
