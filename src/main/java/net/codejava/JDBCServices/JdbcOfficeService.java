@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
 
-public class OfficeService {
+public class JdbcOfficeService {
 
 
     //Method for get Offices from db by jdbc

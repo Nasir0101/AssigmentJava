@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
 
-public class CustomerService {
+public class JdbcCustomerService {
 
     // Method for getting Customer by jdbc
     public void getCustomersFromJDBC(Connection connection) throws SQLException {
@@ -113,6 +113,16 @@ public class CustomerService {
         int rowsInserted = statement.executeUpdate();
         if (rowsInserted > 0) {
             System.out.println("A new Customer was inserted successfully!");
+        }
+    }
+
+    // Method for getting customer id who ordered Most
+    public void getCustomerWhoOrderedMost(Connection connection) throws SQLException {
+        String sql = "SELECT customer_id, count(customer_id) as count FROM uppgift_db_jdbc.orders group by customer_id order by count desc limit 1;";
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+        while (result.next()) {
+            System.out.println("Customer Id who Orderd Most : " + result.getInt("customer_id"));
         }
     }
 }

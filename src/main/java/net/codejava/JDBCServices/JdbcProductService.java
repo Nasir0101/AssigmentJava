@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.Scanner;
 
-public class ProductService {
+public class JdbcProductService {
 
     //Method for getting product data by jdbc
     public void getProductFromJDBC(Connection connection) throws SQLException {

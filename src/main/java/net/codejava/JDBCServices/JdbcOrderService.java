@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
 
-public class OrderService {
+public class JdbcOrderService {
 
 
     // Get Order from Db by JDBC

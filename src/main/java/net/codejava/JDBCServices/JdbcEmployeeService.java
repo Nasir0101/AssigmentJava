@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
 
-public class EmployeeService {
+public class JdbcEmployeeService {
 
 
     // Method for getting Employee by jdbc
@@ -117,13 +117,5 @@ public class EmployeeService {
     }
 
 
-    // Method for getting customer id who ordered Most
-    public void getCustomerWhoOrderedMost(Connection connection) throws SQLException {
-        String sql = "SELECT customer_id, count(customer_id) as count FROM uppgift_db_jdbc.orders group by customer_id order by count desc limit 1;";
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(sql);
-        while (result.next()) {
-            System.out.println("Customer Id who Orderd Most : " + result.getInt("customer_id"));
-        }
-    }
+
 }
