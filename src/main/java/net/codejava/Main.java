@@ -6,7 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.criterion.Order;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -43,7 +42,7 @@ public class Main {
         if (option == 1) {
             String dbURL = "jdbc:mysql://localhost:3306/uppgift_db_jdbc";
             String username = "root";
-            String password = "Vfr$3edc";
+            String password = "root";
 
             Connection connection = null;
             try {
@@ -250,12 +249,12 @@ public class Main {
                     case "update":
                         System.out.println("Enter id");
                         Integer id = in.nextInt();
-                        employeeService.updateEmployee(id,sessionFactory);
+                        employeeService.updateEmployee(id, sessionFactory);
                         break;
                     case "remove":
                         System.out.println("Enter id");
                         Integer id1 = in.nextInt();
-                        employeeService.removeEmployee(id1,sessionFactory);
+                        employeeService.removeEmployee(id1, sessionFactory);
                         break;
                 }
 
@@ -274,12 +273,12 @@ public class Main {
                     case "update":
                         System.out.println("Enter id");
                         Integer id = in.nextInt();
-                        officeService.updateOffices(id,sessionFactory);
+                        officeService.updateOffices(id, sessionFactory);
                         break;
                     case "remove":
                         System.out.println("Enter id");
                         Integer id1 = in.nextInt();
-                        officeService.removeOffice(id1,sessionFactory);
+                        officeService.removeOffice(id1, sessionFactory);
                         break;
                 }
 
@@ -298,12 +297,12 @@ public class Main {
                     case "update":
                         System.out.println("Enter id");
                         Integer id = in.nextInt();
-                        ordersService.updateOrders(id,sessionFactory);
+                        ordersService.updateOrders(id, sessionFactory);
                         break;
                     case "remove":
                         System.out.println("Enter id");
                         Integer id1 = in.nextInt();
-                        ordersService.removeOrder(id1,sessionFactory);
+                        ordersService.removeOrder(id1, sessionFactory);
                         break;
                 }
 
@@ -322,7 +321,7 @@ public class Main {
                     case "update":
                         System.out.println("Enter id");
                         Integer id = in.nextInt();
-                        productService.updateProducts(id,sessionFactory);
+                        productService.updateProducts(id, sessionFactory);
                         break;
                     case "remove":
                         System.out.println("Enter id");
